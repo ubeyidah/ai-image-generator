@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { RiAiGenerate } from "react-icons/ri";
 import GeneratedImage from "./GeneratedImage";
 
 const ImageGenerator = () => {
+  const [text, setText] = useState("");
+
+  async function generate() {
+    if (!text) {
+      return 0;
+    }
+  }
   return (
     <section className="flex-1 max-w-2xl px-3">
       <h1 className="text-white text-3xl font-semibold font-mono text-center">
@@ -10,13 +17,18 @@ const ImageGenerator = () => {
         <span className="text-cyan-800"> GENERATOR</span>
       </h1>
 
-      <div className="w-full px-2 py-1  border border-slate-500 mt-6 shadow-md flex items-center  rounded-full  justify-between">
+      <div className="w-full px-2 py-1  border border-cyan-500 mt-6 shadow-md flex items-center  rounded-full  justify-between">
         <input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           type="text"
           placeholder="describe your idea"
           className="flex-1 bg-transparent h-full text-sm py-3 outline-none text-white pl-4 pr-2"
         />
-        <button className="flex bg-cyan-600 items-center gap-3 text-white py-2 rounded-full px-6">
+        <button
+          onClick={generate}
+          className="flex bg-cyan-600 items-center gap-3 text-white py-2 rounded-full px-6"
+        >
           Generate
           <RiAiGenerate />
         </button>
